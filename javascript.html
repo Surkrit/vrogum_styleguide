@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="da" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dennis Jensen, Janus Larsen, Simon Hallas, Alexander Larsen">
+    <meta name="keywords" content="styleguide, eksamen, projekt">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+
+    <link rel="shortcut icon" type="image/png" href="assets/images/vrogum.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet">
+
+    <title>Styleguide - Javascript</title>
+  </head>
+  <body><a class="tilbage" href="index.html">Tilbage</a>
+    <h1>Eksamensprojekt - Styleguide</h1>
+    <h3>Javascript</h3>
+    <form method="post">
+
+
+      <textarea rows="8" cols="80">
+        /* Deltag start */
+        var input = document.getElementById("quantityfield");
+        function subtract(){
+          var total = +input.value;
+          total--;
+          input.value = total;
+        }
+        function add(){
+          var total = +input.value;
+          total++;
+          input.value = total;
+        }{
+        document.getElementById("buttonminus").onclick = subtract;
+        document.getElementById("buttonplus").onclick = add;
+        }
+
+        /* Deltag slut */
+
+        /* Slider start */
+
+        var Slider = 0;
+        imageSlide();
+
+        function imageSlide() {
+            var i;
+            var x = document.getElementsByClassName("forsidebilleder");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            Slider++;
+            if (Slider > x.length) {Slider = 1}
+            x[Slider-1].style.display = "block";
+            setTimeout(imageSlide, 7000);
+        }
+        /* Slider slut */
+
+        /*Scroll down page starts */
+        function scrolldownM() {
+          var elmnt = document.getElementById("");
+          elmnt.scrollIntoView();
+        }
+        /*Scroll down page slut */
+
+        /* Modal start */
+        var modal = document.getElementById('openModal');
+
+        var open = document.getElementById("modalClick");
+
+        var span = document.getElementsByClassName("lukmodal");
+        open.onclick = function() {
+            modal.style.display = "block";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        /* Modal slut */
+
+        /* login start */
+        var confirm = [
+          {
+            username: "Eal12345",
+            password: "123456"
+          }
+        ]
+
+        function validator(){
+          var username = document.querySelector("#user").value;
+          var password = document.querySelector("#pass").value;
+
+          for(i = 0; i < confirm.length; i++) {
+            if (username == confirm[i].username && password == confirm[i].password) {
+              window.open("index.html") && window.close("login.html");
+            }
+          }
+          alert("Forkert brugernavn eller kodeord")
+        }
+
+        function myFunction(){
+          var x = document.getElementById("pass");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        /* login slut */
+
+        /* opret start */
+        var userData = [];
+
+        function submitBr() {
+          var brugerNavn = document.getElementById("userText").value;
+          console.log(brugerNavn);
+          var adgangsKode = document.getElementById("passText").value;
+          console.log(adgangsKode);
+
+          var infoObj = {navn:brugerNavn , "password":adgangsKode};
+          userData.push(infoObj);
+          localStorage.setItem("bruger1" ,JSON.stringify(userData));
+        }
+
+        function validator() {
+        //henter dataen fra local storage og parser den med Json//
+          var localData = localStorage.getItem('bruger1');
+          var convertedData = JSON.parse(localData);
+          console.log(convertedData);
+        //finder de items jeg skal bruge fra objected. ps skriver 0 fordi det sidder i et array//
+          var storedEmail = convertedData[0].navn;
+          var storedPassword = convertedData[0].password;
+        //her renamer jeg de items jeg lige hentede for at gøre det nemmere for mig selv//
+          var enteredEmail = document.getElementById('user');
+          var enteredPassword = document.getElementById('pass')
+        //login check//
+          if(enteredEmail.value !== storedEmail ||
+            enteredPassword.value !== storedPassword) {
+              alert('Fejl forkert brugernavn eller Adgangskode');
+              return false;
+          }else {
+              alert('Sucess!');
+              location.href = "index.html";
+          }
+        }
+        function myFunction(){
+          var x = document.getElementById("pass");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+
+        /* opret slut */
+      </textarea>
+
+
+    </form>
+  </body>
+  <footer>
+    <h4>Udarbejdet af</h4>
+    <p>Gruppe 22 <br> Janus Larsen, Simon Hallas, Dennis Jensen, Alexander Larsen</p>
+  </footer>
+</html>
